@@ -30,7 +30,7 @@ function playRound(playerSelection, computerSelection) {
     }
   }
 
-function game() {
+/*function game() {
     let playerScore = 0;
     for (let i = 0; i < 5; i++) {
       const playerSelection = window.prompt('Choose rock, paper, or scissors');
@@ -45,6 +45,44 @@ function game() {
     } else {
         console.log('You lose!');
     }
+  }*/
+
+// logic.js
+
+
+  let rock = document.querySelector('#rock');
+  let paper = document.querySelector('#paper');
+  let scissors = document.querySelector('#scissors');
+  let scoreBoard = document.querySelector('#result');
+  let score = 0;
+
+  function updateScore(playerSelection) {
+      if (score < 5) {
+          let result = playRound(playerSelection, getComputerChoice());
+          if (result.includes('win')) {
+              score++;
+          }
+          scoreBoard.textContent = score;
+      }
+
+      if (score === 5) {
+          scoreBoard.textContent = 'You finished the game!';
+          // Optionally, reset the score after the game finishes
+          // score = 0;
+      }
   }
 
-game();
+  rock.addEventListener('click', function() {
+      updateScore('rock');
+  });
+
+  paper.addEventListener('click', function() {
+      updateScore('paper');
+  });
+
+  scissors.addEventListener('click', function() {
+      updateScore('scissors');
+  });
+
+
+
